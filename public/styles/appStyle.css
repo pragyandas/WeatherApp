@@ -1,0 +1,9 @@
+li { cursor: pointer; position: relative; left: 0; transition: all 0.2s ease; }
+li:hover {color: #369; background-color: #EEE; left: .2em;}
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}

@@ -59,54 +59,6 @@ export class Draw {
 
         var g = this.svg.select("#" + id + "_svg");
 
-        /*g.selectAll('.marker')
-            .data(data)
-            .enter()
-            .append('circle')
-            .attr('class', 'marker')
-            .attr("cx", (d) => {
-                return projection([d.position.lon, d.position.lat])[0];
-            })
-            .attr("cy", (d) => {
-                return projection([d.position.lon, d.position.lat])[1];
-            })
-            .attr("r", 4)
-            .style('fill', '#0000ff')
-            .on('mouseover', (d) => {
-                //this.drawLocationSvg(event, d);
-            });
-
-        g.selectAll('.temperature')
-            .data(data)
-            .enter()
-            .append('rect')
-            .attr('class', 'temperature')
-            .attr('rx', 5)
-            .attr('ry', 5)
-            .attr("x", (d) => {
-                return projection([d.position.lon, d.position.lat])[0] - 50;
-            })
-            .attr("y", (d) => {
-                return projection([d.position.lon, d.position.lat])[1] - 30;
-            })
-            .attr('width', (d) => {
-                return 50;
-            })
-            .attr('height', (d) => {
-                return 30;
-            })
-            .style('fill', '#00ff00')
-            .append('text')
-            .text((d) => {
-                return d.weather.temperature;
-            })
-            .attr("x", (d) => {
-                return projection([d.position.lon, d.position.lat])[0] - 50;
-            })
-            .attr("y", (d) => {
-                return projection([d.position.lon, d.position.lat])[1] - 30;
-            });*/
-
         var circleGroup = g.selectAll('.marker')
             .data(data)
             .enter()
@@ -124,6 +76,7 @@ export class Draw {
             })
             .attr("r", 4)
             .style('fill', '#0000ff')
+            .style('cursor', 'pointer')
             .on('mouseover', function(d) {
                 d3.select('#' + d.city)
                     .attr('display', 'block');
@@ -143,56 +96,81 @@ export class Draw {
             .attr('rx', 5)
             .attr('ry', 5)
             .attr("x", (d) => {
-                return projection([d.position.lon, d.position.lat])[0] - 50;
+                return projection([d.position.lon, d.position.lat])[0] - 100;
             })
             .attr("y", (d) => {
-                return projection([d.position.lon, d.position.lat])[1] - 30;
+                return projection([d.position.lon, d.position.lat])[1] - 70;
             })
             .attr('width', (d) => {
-                return 50;
+                return 100;
             })
             .attr('height', (d) => {
-                return 30;
+                return 70;
             })
             .attr('id', (d) => {
                 return d.city;
             })
-            .style('fill', '#00ff00')
+            .style('fill', '#4b4b4b')
             .attr('display', 'none');
 
-        circleGroup
+        var text = circleGroup
             .append('text')
-            .attr("x", (d) => {
-                return projection([d.position.lon, d.position.lat])[0] - 45;
-            })
             .attr("y", (d) => {
-                return projection([d.position.lon, d.position.lat])[1] - 10;
-            })
-            .text((d) => {
-                return d.weather.temperature;
+                return projection([d.position.lon, d.position.lat])[1] - 50;
             })
             .attr('id', function(d) {
                 return d.city + '_text';
             })
-            .attr('display', 'none');
+            .attr('display', 'none')
+            .style('fill', '#fff');
+
+
+
+        text.append('tspan')
+            .attr("x", (d) => {
+                return projection([d.position.lon, d.position.lat])[0] - 90;
+            })
+            .text((d) => {
+                return d.city.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});;
+            })
+            .style("font-size",'16')
+            .style("font-weight","bold");
+
+        text.append('tspan')
+            .attr("x", (d) => {
+                return projection([d.position.lon, d.position.lat])[0] - 90;
+            })
+            .text((d) => {
+                return d.weather.temperature
+            })
+            .style("font-size",'14')
+            .attr('dy', '20');
+
+        text.append('tspan')
+            .attr("x", (d) => {
+                return projection([d.position.lon, d.position.lat])[0] - 50;
+            })
+            .text((d) => {
+                return String.fromCharCode(248);
+            })
+            .style("font-size",'14')
+            .style("baseline-shift", "super");
+
+        text.append('tspan')
+            .attr("x", (d) => {
+                return projection([d.position.lon, d.position.lat])[0] - 40;
+            })
+            .style("font-size",'14')
+            .text('F');
+
+        text.append('tspan')
+            .attr("x", (d) => {
+                return projection([d.position.lon, d.position.lat])[0] - 90;
+            })
+            .text((d) => {
+                return d.weather.summary;
+            })
+            .style("font-size",'12')
+            .attr('dy', '20');
     }
-    // private static drawLocationSvg(e: Event, data: WeatherData) {
-    //     // console.log(e.target);
-    //     // console.log(data.city + '-' +data.weather.temperature);
-    //     //var city=d3.select(e.target);
-    //     var promise = new Promise((resolve, reject) => {
-    //         d3.xml("/assets/location.svg", "image/svg+xml", (error, xml) => {
-    //             if (error) reject(error);
-    //             resolve(xml.documentElement);
-    //         });
-    //     });
-    //
-    //     promise.then((svg) => {
-    //         document.body.appendChild(<Node>svg);
-    //         // d3.select('#location-pointer')
-    //     }, (err) => {
-    //         console.error(err);
-    //     })
-    //
-    // }
 }

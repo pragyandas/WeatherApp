@@ -52,11 +52,14 @@ export class Draw {
         }
     }
     private static drawLocations(id: string, data: WeatherData[]) {
+
         var projection = d3.geo.albersUsa()
             .scale(1000)
             .translate([this.width / 2, this.height / 2]);
+
         var g = this.svg.select("#" + id + "_svg");
-        g.selectAll('.marker')
+
+        /*g.selectAll('.marker')
             .data(data)
             .enter()
             .append('circle')
@@ -78,31 +81,100 @@ export class Draw {
             .enter()
             .append('rect')
             .attr('class', 'temperature')
-            .attr('rx',5)
-            .attr('ry',5)
+            .attr('rx', 5)
+            .attr('ry', 5)
             .attr("x", (d) => {
-                return projection([d.position.lon, d.position.lat])[0]-50;
+                return projection([d.position.lon, d.position.lat])[0] - 50;
             })
             .attr("y", (d) => {
-                return projection([d.position.lon, d.position.lat])[1]-30;
+                return projection([d.position.lon, d.position.lat])[1] - 30;
             })
-            .attr('width',(d) => {
+            .attr('width', (d) => {
                 return 50;
             })
-            .attr('height',(d) => {
+            .attr('height', (d) => {
                 return 30;
             })
             .style('fill', '#00ff00')
             .append('text')
-            .text((d)=>{
-              return d.weather.temperature;
+            .text((d) => {
+                return d.weather.temperature;
             })
             .attr("x", (d) => {
-                return projection([d.position.lon, d.position.lat])[0]-50;
+                return projection([d.position.lon, d.position.lat])[0] - 50;
             })
             .attr("y", (d) => {
-                return projection([d.position.lon, d.position.lat])[1]-30;
+                return projection([d.position.lon, d.position.lat])[1] - 30;
+            });*/
+
+        var circleGroup = g.selectAll('.marker')
+            .data(data)
+            .enter()
+            .append('g')
+            .attr('class', 'circleGroup');
+
+        circleGroup
+            .append('circle')
+            .attr('class', 'marker')
+            .attr("cx", (d) => {
+                return projection([d.position.lon, d.position.lat])[0];
+            })
+            .attr("cy", (d) => {
+                return projection([d.position.lon, d.position.lat])[1];
+            })
+            .attr("r", 4)
+            .style('fill', '#0000ff')
+            .on('mouseover', function(d) {
+                d3.select('#' + d.city)
+                    .attr('display', 'block');
+                d3.select('#' + d.city + '_text')
+                    .attr('display', 'block');
+            })
+            .on('mouseout', function(d) {
+                d3.select('#' + d.city)
+                    .attr('display', 'none');
+                d3.select('#' + d.city + '_text')
+                    .attr('display', 'none');
             });
+
+        circleGroup
+            .append('rect')
+            .attr('class', 'temperature')
+            .attr('rx', 5)
+            .attr('ry', 5)
+            .attr("x", (d) => {
+                return projection([d.position.lon, d.position.lat])[0] - 50;
+            })
+            .attr("y", (d) => {
+                return projection([d.position.lon, d.position.lat])[1] - 30;
+            })
+            .attr('width', (d) => {
+                return 50;
+            })
+            .attr('height', (d) => {
+                return 30;
+            })
+            .attr('id', (d) => {
+                return d.city;
+            })
+            .style('fill', '#00ff00')
+            .attr('display', 'none');
+
+        circleGroup
+            .append('text')
+            .attr("x", (d) => {
+                return projection([d.position.lon, d.position.lat])[0] - 45;
+            })
+            .attr("y", (d) => {
+                return projection([d.position.lon, d.position.lat])[1] - 10;
+            })
+            .text((d) => {
+                return d.weather.temperature;
+            })
+            .attr('id', function(d) {
+                return d.city + '_text';
+            })
+            .attr('display', 'none');
     }
     // private static drawLocationSvg(e: Event, data: WeatherData) {
     //     // console.log(e.target);

@@ -1,17 +1,20 @@
-<div class="detail-container">
+<div *ng-if="details" class="detail-container">
   <div class="switch">
     <input type="checkbox" name="toggle" (click)="toggle()">
     <label for="toggle"><i></i></label>
     <span></span>
   </div>
-  <div>
+  <div [hidden]="!toggleDetails">
     <div class="text-container">
-      45<sup>o</sup>F
+      {{temperature}}<sup>o</sup>F
      </div>
     <div class="v-separator">
     </div>
     <div class="icon-container">
-      <i class="details wi wi-forecast-io-cloudy"></i>
+      <i class="details wi {{details.icon}}" title="{{details.summary}}"></i>
     </div>
+  </div>
+  <div class="details full" [hidden]="toggleDetails">
+    
   </div>
 </div>

@@ -8,7 +8,7 @@ export class DrawMap {
     private static width: number;
     private static svg: d3.Selection<any>;
     private static projection:d3.geo.ConicProjection;
-    public static clickSubject:Rx.Subject<any>=new Rx.Subject<any>();
+    public static locationSubject:Rx.Subject<any>=new Rx.Subject<any>();
     public static drawMap(id: string, data: WeatherData[]) {
         if (!this.svg) {
             this.width = document.getElementById(id).offsetWidth;
@@ -94,7 +94,7 @@ export class DrawMap {
               .duration(700)
               .style('fill','#4b4b4b')
               .attr("r", 8);
-              this.clickSubject.next(d.city);
+              this.locationSubject.next(d.city);
             });
 
         circleGroup

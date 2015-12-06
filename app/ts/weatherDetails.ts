@@ -12,16 +12,20 @@ import {WeatherData} from './models';
 })
 export class WeatherDetails{
   constructor(private weatherService:WeatherService){
-    DrawMap.clickSubject.subscribe((city)=>{
+    DrawMap.locationSubject.subscribe((city)=>{
+      this.city=city;
       weatherService.getWeatherDetails(city);
-    })
+    });
     weatherService.wetherDetailsSubject.subscribe((details)=>{
       this.details=details;
-      console.log(details);
+      this.temperature=Math.round(details.temperature);
     })
   }
   toggle=function(){
-    console.log('Toggle');
+    this.toggleDetails=!this.toggleDetails;
   }
+  toggleDetails:boolean=true;
+  temperature:number;
+  city:string;
   details:any;
 }

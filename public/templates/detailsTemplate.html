@@ -11,10 +11,14 @@
     <div class="v-separator">
     </div>
     <div class="icon-container">
-      <i class="details wi {{details.icon}}" title="{{details.summary}}"></i>
+      <i class="details wi {{icon}}" title="{{details.summary}}"></i>
     </div>
   </div>
-  <div class="details full" [hidden]="toggleDetails">
-    
+  <div class="full-list" [hidden]="toggleDetails">
+    <ul id="list">
+      <li *ng-for="#key of detailKeys">
+        {{key}} : {{details[key]}}
+      </li>
+    </ul>
   </div>
 </div>

@@ -32,6 +32,12 @@
   border-left: 1px solid #b4b4b4;
   padding: 0;
 }
+#list{
+  list-style-type: none;
+  color: #acc7f2;
+  font-size: 20px;
+  padding-left: 74px;
+}
 .switch input {
   top: 0;
   right: 0;

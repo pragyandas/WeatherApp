@@ -24,43 +24,47 @@ io.on('connection', function (socket) {
     if (weatherData.length > 0) {
         socket.emit('weatherData', weatherData);
     }
-    weather.weatherDataSubject.subscribe(function (result) {
-        var cities = Object.keys(result), mapData = [];
-        cities.forEach(function (city) {
-            mapData.push({ city: city, latitude: result[city].latitude, longitude: result[city].longitude, weather: result[city].currently });
+    else {
+        weather.weatherDataSubject.subscribe(function (result) {
+            var cities = Object.keys(result), mapData = [];
+            cities.forEach(function (city) {
+                mapData.push({ city: city, latitude: result[city].latitude, longitude: result[city].longitude, weather: result[city].currently });
+            });
+            weatherData = mapData.map(function (d) {
+                return {
+                    city: d.city,
+                    position: {
+                        lat: d.latitude,
+                        lon: d.longitude
+                    },
+                    weather: {
+                        temperature: d.weather.temperature,
+                        icon: 'wi-forecast-io-' + d.weather.icon,
+                        summary: d.weather.summary
+                    }
+                };
+            });
+            socket.emit('weatherData', weatherData);
+            console.log('weatherDataEmitted to ' + socket.id);
+        }, function (error) {
+            console.error(error);
         });
-        weatherData = mapData.map(function (d) {
-            return {
-                city: d.city,
-                position: {
-                    lat: d.latitude,
-                    lon: d.longitude
-                },
-                weather: {
-                    temperature: d.weather.temperature,
-                    icon: 'wi-forecast-io-' + d.weather.icon,
-                    summary: d.weather.summary
-                }
-            };
-        });
-        socket.emit('weatherData', weatherData);
-        console.log('weatherDataEmitted');
+    }
+    weather.weatherDetailSubject.subscribe(function (result) {
+        result.icon = 'wi-forecast-io-' + result.icon;
+        socket.emit('cityWeatherDetails', result);
+        console.log('weatherDetailsEmitted to ' + socket.id);
+    }, function (error) {
+        console.error(error);
+    });
+    weather.weatherForcastSubject.subscribe(function (result) {
+        socket.emit('cityForcastDetails', result);
+        console.log('weatherForcastEmitted to ' + socket.id);
     }, function (error) {
         console.error(error);
     });
     socket.on('getCityDetails', function (city) {
         weather.getWeatherDetails(city);
-        weather.weatherDetailSubject.subscribe(function (result) {
-            socket.emit('cityWeatherDetails', result);
-            console.log('weatherDetailsEmitted');
-        }, function (error) {
-            console.error(error);
-        });
-        weather.weatherForcastSubject.subscribe(function (result) {
-            socket.emit('cityForcastDetails', result);
-            console.log('weatherForcastEmitted');
-        }, function (error) {
-            console.error(error);
-        });
     });
 });
+//# sourceMappingURL=app.js.map

@@ -1,9 +1,20 @@
-li { cursor: pointer; position: relative; left: 0; transition: all 0.2s ease; }
-li:hover {color: #369; background-color: #EEE; left: .2em;}
-table {
-    border-collapse: collapse;
+.map{
+  height:500px;
 }
-
-table, th, td {
-    border: 1px solid black;
+.draw{
+  width:70%;
+  height:100%;
+  float:left;
+  margin: 0 auto;
+}
+.details{
+  width:30%;
+  height:100%;
+  float:right;
+  margin: 0 auto;
+}
+.forcast{
+  height:40%;
+  width:100%;
+  float: left;
 }

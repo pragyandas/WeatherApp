@@ -22,3 +22,4 @@ var Weather = (function () {
     return Weather;
 })();
 exports.Weather = Weather;
+//# sourceMappingURL=weather.js.map

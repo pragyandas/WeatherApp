@@ -1,4 +1,5 @@
 # WeatherApp
+
 Real-Time(well almost...) Weather Application written in TypeScript featuring Firebase, Express, Socket.io, RxJs (client as well as server), Angular2.0 and D3 using 'Firebase Data Sets: Weather'
 
 ### Please note Angular 2.0 is in Alpha. This repo uses angular2 2.0.0-alpha.45
@@ -16,13 +17,16 @@ This project is completely written in typescript, please follow the compilation 
 ###Compilation steps
 
 Install webpack if not installed.
-$ npm install webpack -g
-$ git clone https://github.com/pragyandas/WeatherApp.git
-$ cd WeatherApp
-$ tsc
-$ cd app
-$ webpack
-$ npm start
+Install typescript if not installed.
+
+* $ npm install webpack -g 
+* $ npm install typescript -g
+* $ git clone https://github.com/pragyandas/WeatherApp.git
+* $ cd WeatherApp
+* $ tsc
+* $ cd app
+* $ webpack
+* $ npm start
 
 # License
 

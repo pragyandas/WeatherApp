@@ -16,6 +16,7 @@
     "ts/app.ts",
     "ts/models.ts",
     "ts/utility/drawMap.ts",
+    "ts/weatherBase.ts",
     "ts/weatherDetails.ts",
     "ts/weatherForcast.ts",
     "ts/weatherMap.ts",

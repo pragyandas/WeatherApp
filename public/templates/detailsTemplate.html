@@ -1,0 +1,24 @@
+<div *ng-if="details" class="detail-container">
+  <div class="switch">
+    <input type="checkbox" name="toggle" (click)="toggle()">
+    <label for="toggle"><i></i></label>
+    <span></span>
+  </div>
+  <div [hidden]="!toggleDetails">
+    <div class="text-container">
+      {{temperature}}<sup>o</sup>F
+     </div>
+    <div class="v-separator">
+    </div>
+    <div class="icon-container">
+      <i class="details wi {{icon}}" title="{{details.summary}}"></i>
+    </div>
+  </div>
+  <div class="full-list" [hidden]="toggleDetails">
+    <ul id="list">
+      <li *ng-for="#key of detailKeys">
+        {{key}} : {{details[key]}}
+      </li>
+    </ul>
+  </div>
+</div>

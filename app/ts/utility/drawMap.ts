@@ -88,12 +88,18 @@ export class DrawMap {
                     .attr('display', 'none');
             })
             .on('click',(d)=>{
-              d3.selectAll('circle').style('fill','#1d7276').attr('r',4);
+
+              d3.selectAll('circle').style('fill','#1d7276')
+              .style('stroke','#fff')
+              .attr('r',4);
+
               d3.select(event.target)
               .transition()
               .duration(700)
-              .style('fill','#4b4b4b')
+              .style('stroke','#1d7276')
+              .style('fill','rgb(185, 243, 254)')
               .attr("r", 8);
+
               this.locationSubject.next(d.city);
             });
 

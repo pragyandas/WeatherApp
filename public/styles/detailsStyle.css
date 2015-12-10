@@ -3,7 +3,7 @@
   padding: 5px 5px 5px 5px;
 }
 .details.wi {
-  color: #acc7f2;
+  color: rgba(51, 79, 121, 0.6);
   text-shadow: rgb(255, 255, 255) 1px 2px 0px;
   font-size: 8em;
   padding-top: 30px;
@@ -21,7 +21,7 @@
   font-size: 89px;
   font-weight: bold;
   text-shadow: rgb(255, 255, 255) 1px 2px 0px;
-  color: #acc7f2;
+  color: rgba(51, 79, 121, 0.6);
 }
 .v-separator {
   content: "";
@@ -34,7 +34,7 @@
 }
 #list{
   list-style-type: none;
-  color: #acc7f2;
+  color: #fff;
   font-size: 20px;
   text-transform: capitalize;
   padding-left: 74px;

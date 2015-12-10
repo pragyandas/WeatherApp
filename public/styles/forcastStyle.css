@@ -1,0 +1,28 @@
+.forcast-details{
+    display: inline-block;
+    padding: 10px;
+    color: #fff;
+    font-size: 12px;
+}
+
+.forcast-item{
+    float: left;
+    padding: 10px 20px;
+}
+
+.icon-container{
+    text-align: center;
+    font-size: 20px;
+    padding: 5px;
+}
+
+.forcast-date{
+    text-align: center;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #fff;
+}
+
+.forcast-note{
+    padding: 10px;
+}

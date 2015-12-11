@@ -1,9 +1,11 @@
 <div *ng-if="details" class="detail-container">
+<label class="city-text-container">{{city}}</label>
   <div class="switch">
     <input type="checkbox" name="toggle" (click)="toggle()">
     <label for="toggle"><i></i></label>
     <span></span>
   </div>
+
   <div [hidden]="!toggleDetails">
     <div class="text-container">
       {{temperature}}<sup>o</sup>F

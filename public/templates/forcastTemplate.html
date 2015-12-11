@@ -1,0 +1,39 @@
+<div *ng-if="details" class="forcast-details">
+
+    <div class="forcast-item" *ng-for="#detail of details" >
+
+        <div class="icon-container">
+            <i class="details wi wi-forecast-io-{{detail.icon}}" title="{{detail.summary}}"></i>
+        </div>
+        <div title="Temperature Min">
+            <i class="wi wi-thermometer-exterior"></i>
+             {{detail.temperatureMin}} <sup>o</sup>F
+         </div>
+        <div title="Temperature Max">
+            <i class="wi wi-thermometer"></i>
+            {{detail.temperatureMax}} <sup>o</sup>F
+        </div>
+        <div title="Humidity">
+            <i class="wi wi-humidity"></i>
+            {{detail.humidity}}
+        </div>
+        <div title="Precipitation">
+            <i class="wi wi-raindrop"></i>
+            {{detail.precipProbability}}
+        </div>
+        <div title="Sunrise">
+            <i class="wi wi-sunrise"></i>
+            {{detail.sunriseTime*1000 | date:"hh:mm"}}
+        </div>
+        <div title="Sunset">
+            <i class="wi wi-sunset"></i>
+            {{detail.sunsetTime*1000 | date:"hh:mm"}}
+        </div>
+        <div class="forcast-date">
+            {{detail.time*1000 | date}}
+        </div>
+    </div>
+
+    <div class="forcast-note"> Note: Sunrise and sunset time are in your local time  </div>
+
+</div>

@@ -37,5 +37,5 @@ export class WeatherDetails {
   detailKeys: string[];
   temperature: number;
   city: string;
-  details: any;
+  details: any;  
 }

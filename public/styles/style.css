@@ -1,5 +1,5 @@
 .land {
-  fill: #ACC7F2;
+  fill: rgba(51, 79, 121, 0.6);
 }
 .county-boundary {
   fill: none;
@@ -12,4 +12,5 @@
 }
 body{
   background-color: #1d7276;
+  background-color: #935794;
 }

@@ -13,7 +13,7 @@ export class DrawMap {
         if (!this.svg) {
             this.width = document.getElementById(id).offsetWidth;
             this.height = document.getElementById(id).offsetHeight;
-            var scale = this.height*2;
+            var scale = this.height * 2;
 
             this.projection = d3.geo.albersUsa()
                 .scale(scale)
@@ -88,12 +88,18 @@ export class DrawMap {
                     .attr('display', 'none');
             })
             .on('click',(d)=>{
-              d3.selectAll('circle').style('fill','#1d7276').attr('r',4);
+
+              d3.selectAll('circle').style('fill','#1d7276')
+              .style('stroke','#fff')
+              .attr('r',4);
+
               d3.select(event.target)
               .transition()
               .duration(700)
-              .style('fill','#4b4b4b')
+              .style('stroke','#1d7276')
+              .style('fill','rgb(185, 243, 254)')
               .attr("r", 8);
+
               this.locationSubject.next(d.city);
             });
 
@@ -130,8 +136,6 @@ export class DrawMap {
             })
             .attr('display', 'none')
             .style('fill', '#fff');
-
-
 
         text.append('tspan')
             .attr("x", (d) => {
